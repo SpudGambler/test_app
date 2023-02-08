@@ -67,10 +67,10 @@ function RegisterForm({modalVisibleForm2}: any) {
             />
             <View style={styles.buttonsContent}>
               <Pressable style={styles.btnStyleBlue}>
-                <Text style={styles.btnStyleBlue}>Aceptar</Text>
+                <Text>Aceptar</Text>
               </Pressable>
               <Pressable style={styles.btnStyleRed}>
-                <Text style={styles.btnStyleRed}>Cancelar</Text>
+                <Text>Cancelar</Text>
               </Pressable>
             </View>
           </View>
@@ -137,12 +137,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginHorizontal: 11,
     borderRadius: 15,
-  },
-  btnTxtStyle: {
-    textAlign: 'center',
-    color: '#EDEEF4',
-    fontSize: 20,
-    textTransform: 'capitalize',
   },
 });
 
