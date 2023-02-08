@@ -63,7 +63,10 @@ function App(): JSX.Element {
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Formulario de Registro</Text>
       </Pressable>
-      <RegisterForm modalVisibleForm2={modalVisibleForm2} />
+      <RegisterForm
+        modalVisibleForm2={modalVisibleForm2}
+        setModalVisibleForm2={setModalVisibleForm2}
+      />
       <Modal animationType="fade" visible={modalVisible2}>
         <Text>Mostrar por 3 segundos</Text>
       </Modal>

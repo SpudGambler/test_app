@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {RadioButton} from 'react-native-paper';
 import DatePicker from 'react-native-modern-datepicker';
@@ -12,14 +13,14 @@ import {
   Pressable,
 } from 'react-native';
 
-function RegisterForm({modalVisibleForm2}: any) {
+function RegisterForm({modalVisibleForm2, setModalVisibleForm2}) {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [checked, setChecked] = React.useState('first');
   return (
-    <Modal visible={modalVisibleForm2}>
+    <Modal animationType="slide" visible={modalVisibleForm2}>
       <SafeAreaView>
         <ScrollView>
           <Text style={styles.titleTxt}>Registro</Text>
@@ -63,13 +64,18 @@ function RegisterForm({modalVisibleForm2}: any) {
             <Text style={styles.dateSectionTxt}>Fecha de nacimiento</Text>
             <DatePicker
               mode="calendar"
+              // eslint-disable-next-line no-shadow
               onSelectedChange={selectedDate => setSelectedDate(selectedDate)}
             />
             <View style={styles.buttonsContent}>
-              <Pressable style={styles.btnStyleBlue}>
+              <Pressable
+                style={styles.btnStyleBlue}
+                onPress={() => console.log(selectedDate)}>
                 <Text>Aceptar</Text>
               </Pressable>
-              <Pressable style={styles.btnStyleRed}>
+              <Pressable
+                style={styles.btnStyleRed}
+                onPress={() => setModalVisibleForm2(!modalVisibleForm2)}>
                 <Text>Cancelar</Text>
               </Pressable>
             </View>

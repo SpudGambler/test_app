@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* This form was the first example, to see the waited result go to RegisterForm.js, there is the homework */
 import React, {useState} from 'react';
 import DatePicker from 'react-native-modern-datepicker';
@@ -15,8 +16,7 @@ import {
 export const Form = ({modalVisibleForm}) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [setSelectedDate] = useState('');
   const [age, setAge] = useState('');
 
   return (
@@ -51,7 +51,9 @@ export const Form = ({modalVisibleForm}) => {
               mode="calendar"
               onSelectedChange={selectedDate => setSelectedDate(selectedDate)}
             />
-            <Pressable style={styles.btnStyle}>
+            <Pressable
+              style={styles.btnStyle}
+              onPress={() => console.log('Press')}>
               <Text style={styles.btnTxtStyle}>Registrarse</Text>
             </Pressable>
           </View>
