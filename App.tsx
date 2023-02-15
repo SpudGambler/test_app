@@ -11,6 +11,7 @@ import {Form} from './src/components/Form';
 import RegisterForm from './src/components/RegisterForm';
 
 function App(): JSX.Element {
+  const [userList, setUserList] = useState([]);
   const [text, onChangeText] = useState('Text');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
@@ -42,11 +43,13 @@ function App(): JSX.Element {
       <Pressable
         onPress={() => setModalVisibleForm(true)}
         style={styles.btnStyle}>
-        <Text style={styles.btnTxtStyle}>Registrar Usuario</Text>
+        <Text style={styles.btnTxtStyle}>Registrar Usuario (Tarea 2)</Text>
       </Pressable>
       <Form
         modalVisibleForm={modalVisibleForm}
         setModalVisibleForm={setModalVisibleForm}
+        userList={userList}
+        setUserList={setUserList}
       />
       <Modal animationType="slide" visible={modalVisible}>
         <Text>Ventana Modal</Text>
@@ -64,7 +67,7 @@ function App(): JSX.Element {
       <Pressable
         onPress={() => setModalVisibleForm2(true)}
         style={styles.btnStyleRed}>
-        <Text style={styles.btnTxtStyle}>Formulario de Registro</Text>
+        <Text style={styles.btnTxtStyle}>Formulario de Registro (Tarea 1)</Text>
       </Pressable>
       <RegisterForm
         modalVisibleForm2={modalVisibleForm2}
