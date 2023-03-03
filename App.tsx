@@ -6,17 +6,23 @@ import {
   TextInput,
   Pressable,
   Modal,
+  FlatList,
 } from 'react-native';
 import {Form} from './src/components/Form';
-import RegisterForm from './src/components/RegisterForm';
+import {User} from './src/components/User';
+import {Superhero} from './src/components/SuperHero';
+import {FormPractice} from './src/components/FormPractice';
+/* import RegisterForm from './src/components/First_Homework'; */
 
 function App(): JSX.Element {
-  const [userList, setUserList] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [modalHero, setModalHero] = useState(false);
+  const [modalPractice, setModalPractice] = useState(false);
   const [text, onChangeText] = useState('Text');
-  const [modalVisible, setModalVisible] = useState(false);
+  /* const [modalVisible, setModalVisible] = useState(false); */
   const [modalVisible2, setModalVisible2] = useState(false);
-  const [modalVisibleForm, setModalVisibleForm] = useState(false);
-  const [modalVisibleForm2, setModalVisibleForm2] = useState(false);
+  const [modalRegister, setModalRegister] = useState(false);
+  /* const [modalVisibleForm2, setModalVisibleForm2] = useState(false); */
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.baseText}>Hello</Text>
@@ -25,12 +31,27 @@ function App(): JSX.Element {
         onChangeText={onChangeText}
         value={text}
       />
-      <Pressable
+      {/* <Pressable
         onPress={() => setModalVisible(!modalVisible)}
         onLongPress={() => console.log('Please release me')}
         style={styles.btnStyle}>
         <Text style={styles.btnTxtStyle}>Ventana Modal</Text>
+      </Pressable> */}
+      <Pressable onPress={() => setModalPractice(true)} style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Modal de Practica</Text>
       </Pressable>
+      <FormPractice
+        modalPractice={modalPractice}
+        setModalPractice={setModalPractice}
+      />
+      {/* <FormPractice
+        modalPractice={modalPractice}
+        setModalPractice={setModalPractice}
+      /> */}
+      <Pressable onPress={() => setModalHero(true)} style={styles.btnStyleRed}>
+        <Text style={styles.btnTxtStyle}>Modal de Heroe</Text>
+      </Pressable>
+      <Superhero modalHero={modalHero} setModalHero={setModalHero} />
       <Pressable
         onPress={() =>
           setTimeout(() => {
@@ -38,20 +59,27 @@ function App(): JSX.Element {
           }, 1000)
         }
         style={styles.btnStyleRed}>
-        <Text style={styles.btnTxtStyle}>Mostrar Modal</Text>
+        <Text style={styles.btnTxtStyle}>Iniciar Sesion</Text>
       </Pressable>
-      <Pressable
-        onPress={() => setModalVisibleForm(true)}
-        style={styles.btnStyle}>
-        <Text style={styles.btnTxtStyle}>Registrar Usuario (Tarea 2)</Text>
+      <Pressable onPress={() => setModalRegister(true)} style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Registrarse</Text>
       </Pressable>
       <Form
-        modalVisibleForm={modalVisibleForm}
-        setModalVisibleForm={setModalVisibleForm}
-        userList={userList}
-        setUserList={setUserList}
+        modalRegister={modalRegister}
+        setModalRegister={setModalRegister}
+        users={users}
       />
-      <Modal animationType="slide" visible={modalVisible}>
+      {users.length === 0 ? (
+        <Text>No hay usuarios aún</Text>
+      ) : (
+        <FlatList
+          data={users}
+          renderItem={({item}) => {
+            return <User user_item={user_item} />;
+          }}
+        />
+      )}
+      {/* <Modal animationType="slide" visible={modalVisible}>
         <Text>Ventana Modal</Text>
         <TextInput
           style={styles.input}
@@ -63,8 +91,8 @@ function App(): JSX.Element {
           onChangeText={onChangeText}
           value={text}
         />
-      </Modal>
-      <Pressable
+      </Modal> */}
+      {/* <Pressable
         onPress={() => setModalVisibleForm2(true)}
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Formulario de Registro (Tarea 1)</Text>
@@ -72,7 +100,7 @@ function App(): JSX.Element {
       <RegisterForm
         modalVisibleForm2={modalVisibleForm2}
         setModalVisibleForm2={setModalVisibleForm2}
-      />
+      /> */}
       <Modal animationType="fade" visible={modalVisible2}>
         <Text>Mostrar por 3 segundos</Text>
       </Modal>

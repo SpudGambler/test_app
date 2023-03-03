@@ -15,12 +15,7 @@ import {
   View,
 } from 'react-native';
 
-export const Form = ({
-  modalVisibleForm,
-  setModalVisibleForm,
-  userList,
-  setUserList,
-}) => {
+export const Form = ({modalRegister, setModalRegister, users}) => {
   const [userEmail, setUserEmail] = useState('');
   const [userLastName, setUserLastName] = useState('');
   const [userName, setUserName] = useState('');
@@ -42,22 +37,20 @@ export const Form = ({
       birthday.getFullYear();
     const newUser = {userName, userLastName, userEmail, birthday, gender};
     newUser.birthday = dateFormat;
-    if (userList.find(element => element.userEmail === userEmail) != null) {
-      const userLast = userList.find(
-        element => element.userEmail === userEmail,
-      );
+    if (users.find(element => element.userEmail === userEmail) != null) {
+      const userLast = users.find(element => element.userEmail === userEmail);
       userLast.userName = newUser.userName;
       userLast.userLastName = newUser.userLastName;
       userLast.userEmail = newUser.userEmail;
       userLast.birthday = newUser.birthday;
       userLast.gender = newUser.gender;
     } else {
-      newUser.id = userList.length + 1;
-      userList.push(newUser);
+      newUser.id = users.length + 1;
+      users.push(newUser);
     }
-    setUserList(userList);
+    //setUsers(users);
     console.log('------------- Lista de Usuarios -------------');
-    userList.forEach(element => {
+    users.forEach(element => {
       console.log(element);
     });
     /* const new_user = [userName, birthday];
@@ -71,7 +64,7 @@ export const Form = ({
     console.log(dateFormat);
     console.log('Message1: ', new_user);
     console.log('Message2: ', new_user2); */
-    setModalVisibleForm(!modalVisibleForm);
+    setModalRegister(!modalRegister);
     setUserName('');
     setUserLastName('');
     setGender('');
@@ -80,11 +73,11 @@ export const Form = ({
   };
 
   return (
-    <Modal animationType="slide" visible={modalVisibleForm}>
+    <Modal animationType="slide" visible={modalRegister}>
       <Pressable
         style={styles.close_window}
         onPress={() => {
-          setModalVisibleForm(false);
+          setModalRegister(false);
           setBirthday(new Date());
         }}>
         <Text style={styles.text_close_window}>X</Text>
